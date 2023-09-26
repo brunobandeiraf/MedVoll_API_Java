@@ -12,3 +12,6 @@
 ## Terminal
 - Conectar MySQL
 - mysql -u root -p
+
+## Bean Validation
+- https://jakarta.ee/specifications/bean-validation/3.0/jakarta-bean-validation-spec-3.0.html#builtinconstraints
