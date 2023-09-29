@@ -24,7 +24,7 @@ public class MedicoController {
         // @Valid exige os métodos de validação do Bean Validation
     }
 
-    @GetMapping
+    /*@GetMapping
     public Page<DadosListagemMedico> lista(@PageableDefault(size = 10, sort = {"nome"})Pageable paginacao)  {
         return repository.findAll(paginacao).map(DadosListagemMedico::new);
 
@@ -33,6 +33,11 @@ public class MedicoController {
         // http://localhost:8080/medicos?size=1&page=1
         // Ordenação
         // http://localhost:8080/medicos?sort=nome,desc
+    }*/
+
+    @GetMapping
+    public Page<DadosListagemMedico> listaAtivo(@PageableDefault(size = 10, sort = {"nome"})Pageable paginacao)  {
+        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new);
     }
 
     @PutMapping
@@ -40,5 +45,14 @@ public class MedicoController {
     public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
         var medico = repository.getReferenceById(dados.id());
         medico.atualizarInformacoes(dados);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id) {
+        //repository.deleteById(id);
+
+        var medico = repository.getReferenceById(id);
+        medico.excluir();
     }
 }
