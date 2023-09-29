@@ -1,20 +1,39 @@
-# MedVoll_Java
+## 💻 Sobre o projeto
 
-Módulos utilizados:
-- Web, Validação, Spring Data JPA, MySQL, Flyway e Lombok
+Voll.med é uma clínica médica fictícia que precisa de um aplicativo para gestão de consultas. 
+O aplicativo deve possuir funcionalidades que permitam o gerenciamento de médicos e de pacientes.
 
-## Create Project
-- https://start.spring.io/
+---
 
-## List of Features in Trello
-- https://trello.com/b/O0lGCsKb/api-voll-med
+## ⚙️ Funcionalidades
 
-## Layout (Front End) in Figma
-- https://www.figma.com/file/N4CgpJqsg7gjbKuDmra3EV/Voll.med?type=design&node-id=2-1007&mode=design
+- [x] CRUD de médicos;
+- [x] CRUD de pacientes;
 
-## Terminal
-- Conectar MySQL
-- mysql -u root -p
+---
 
-## Bean Validation
-- https://jakarta.ee/specifications/bean-validation/3.0/jakarta-bean-validation-spec-3.0.html#builtinconstraints
+## 🎨 Layout
+
+O layout da aplicação mobile está disponível neste link: <a href="https://www.figma.com/file/N4CgpJqsg7gjbKuDmra3EV/Voll.med">Figma</a>
+
+---
+
+## 📄 Documentação
+
+A documentação das funcionalidades da aplicação pode ser acessada neste link: <a href="https://trello.com/b/O0lGCsKb/api-voll-med">Trello</a>
+
+---
+
+## 🛠 Tecnologias
+
+As seguintes tecnologias foram utilizadas no desenvolvimento da API Rest do projeto:
+
+- **[Java 17](https://www.oracle.com/java)**
+- **[Spring Boot 3](https://spring.io/projects/spring-boot)**
+- **[Maven](https://maven.apache.org)**
+- **[MySQL](https://www.mysql.com)**
+- **[Hibernate](https://hibernate.org)**
+- **[Flyway](https://flywaydb.org)**
+- **[Lombok](https://projectlombok.org)**
+
+---
