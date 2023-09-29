@@ -1,5 +1,8 @@
 # MedVoll_Java
 
+Módulos utilizados:
+- Web, Validação, Spring Data JPA, MySQL, Flyway e Lombok
+
 ## Create Project
 - https://start.spring.io/
 
