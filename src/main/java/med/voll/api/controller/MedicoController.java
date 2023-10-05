@@ -9,6 +9,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -20,11 +21,17 @@ public class MedicoController {
     private MedicoRepository repository;
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroMedico dados) {
-        repository.save(new Medico(dados));
+    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroMedico dados, UriComponentsBuilder uriBuilder) {
+        var medico = new Medico(dados);
+        repository.save(medico);
         // @Valid exige os métodos de validação do Bean Validation
 
+        var uri = uriBuilder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();
 
+        return ResponseEntity.created(uri).body(new DadosDetalhamentoMedico(medico));
+
+        // 201 - Devolver no corpo da resposta os dados do novo recurso/registro criado
+        // devolve também um cabeçalho do protocolo HTTP (Location)
     }
 
     /*@GetMapping
