@@ -53,4 +53,7 @@ public class Paciente {
         this.ativo = false;
     }
 
+    public void excluir() {
+        this.ativo = false;
+    }
 }
