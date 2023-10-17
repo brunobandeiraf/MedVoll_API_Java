@@ -1,4 +1,5 @@
-package med.voll.api.infra;
+package med.voll.api.infra.security;
+
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
