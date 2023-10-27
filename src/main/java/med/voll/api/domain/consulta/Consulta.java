@@ -1,6 +1,5 @@
 package med.voll.api.domain.consulta;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

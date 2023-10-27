@@ -1,9 +1,7 @@
 package med.voll.api.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
-import med.voll.api.domain.medico.DadosListagemMedico;
-import med.voll.api.domain.medico.Medico;
-import med.voll.api.domain.medico.MedicoRepository;
 import med.voll.api.domain.medico.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,38 +14,25 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("medicos")
+@SecurityRequirement(name = "bearer-key")
 public class MedicoController {
 
     @Autowired
     private MedicoRepository repository;
+
     @PostMapping
     @Transactional
     public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroMedico dados, UriComponentsBuilder uriBuilder) {
         var medico = new Medico(dados);
         repository.save(medico);
-        // @Valid exige os métodos de validação do Bean Validation
 
         var uri = uriBuilder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();
 
         return ResponseEntity.created(uri).body(new DadosDetalhamentoMedico(medico));
-
-        // 201 - Devolver no corpo da resposta os dados do novo recurso/registro criado
-        // devolve também um cabeçalho do protocolo HTTP (Location)
     }
 
-    /*@GetMapping
-    public Page<DadosListagemMedico> lista(@PageableDefault(size = 10, sort = {"nome"})Pageable paginacao)  {
-        return repository.findAll(paginacao).map(DadosListagemMedico::new);
-
-        // Convertendo o tipo de lista para o tipo DadosListagemmedico
-        // Paginação
-        // http://localhost:8080/medicos?size=1&page=1
-        // Ordenação
-        // http://localhost:8080/medicos?sort=nome,desc
-    }*/
-
     @GetMapping
-    public ResponseEntity<Page<DadosListagemMedico>> listaAtivo(@PageableDefault(size = 10, sort = {"nome"})Pageable paginacao)  {
+    public ResponseEntity<Page<DadosListagemMedico>> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
         var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new);
         return ResponseEntity.ok(page);
     }
@@ -64,13 +49,10 @@ public class MedicoController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity excluir(@PathVariable Long id) {
-        //repository.deleteById(id);
-
         var medico = repository.getReferenceById(id);
         medico.excluir();
 
         return ResponseEntity.noContent().build();
-        // 204 - Processada e sem conteúdo
     }
 
     @GetMapping("/{id}")
@@ -78,4 +60,6 @@ public class MedicoController {
         var medico = repository.getReferenceById(id);
         return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
     }
+
+
 }

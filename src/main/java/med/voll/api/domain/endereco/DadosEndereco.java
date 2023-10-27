@@ -17,5 +17,4 @@ public record DadosEndereco(
         String uf,
         String complemento,
         String numero) {
-    // @Pattern(regexp = "\\d{8}") - número e até 8 dígitos
 }

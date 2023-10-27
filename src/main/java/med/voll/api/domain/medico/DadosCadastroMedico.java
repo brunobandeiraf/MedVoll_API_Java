@@ -16,7 +16,6 @@ public record DadosCadastroMedico(
 
         @NotBlank
         String telefone,
-
         @NotBlank
         @Pattern(regexp = "\\d{4,6}")
         String crm,
@@ -24,7 +23,4 @@ public record DadosCadastroMedico(
         Especialidade especialidade,
 
         @NotNull @Valid DadosEndereco endereco) {
-    // @NotNull campo não pode ser nulo
-    // @NotBlank não pode ser nulo e nem vazio
-    // @Pattern(regexp = "\\d{4,6}") 4 a 6 dígitos
 }
