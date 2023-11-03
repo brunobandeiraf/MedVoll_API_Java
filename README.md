@@ -35,5 +35,9 @@ As seguintes tecnologias foram utilizadas no desenvolvimento da API Rest do proj
 - **[Hibernate](https://hibernate.org)**
 - **[Flyway](https://flywaydb.org)**
 - **[Lombok](https://projectlombok.org)**
+- **[SpringDoc](https://springdoc.org/)**
 
 ---
+## 🛠 URLs
+- localhost:8080/swagger-ui/index.html
+- localhost:8080/v3/api-docs
